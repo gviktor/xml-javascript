@@ -5,10 +5,16 @@
     <meta charset="utf-8">
     <script>
         function feldolgoz() {
-            var xml = "";
+            var xml = "<alakzatok><alakzat> <x>100</x><y>150</y><szelesseg>100</szelesseg><magassag>100</magassag></alakzat><alakzat><x>200</x><y>250</y><szelesseg>50</szelesseg><magassag>80</magassag></alakzat></alakzatok>";
+            var feldolgozo = new DOMParser();
+            var xmldok = feldolgozo.parseFromString(xml,"text/xml");
+            var x = xmldok.getElementsByTagName("x")[0].childNodes[0].nodeValue;
+            var y = xmldok.getElementsByTagName("y")[0].childNodes[0].nodeValue;
+            var szelesseg = xmldok.getElementsByTagName("szelesseg")[0].childNodes[0].nodeValue;
+            var magassag = xmldok.getElementsByTagName("magassag")[0].childNodes[0].nodeValue;
             var vaszon = document.getElementById("vaszon");
             var alakzat1 = vaszon.getContext("2d");
-            alakzat1.drawRect(0,0,200,200);
+            alakzat1.fillRect(x,y,szelesseg,magassag);
         }
     </script>
 </head>
