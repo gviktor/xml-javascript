@@ -4,14 +4,25 @@
 <head>
     <meta charset="utf-8">
     <script>
-        function feldolgoz() {
-            var xml = "<alakzatok><alakzat> <x>100</x><y>150</y><szelesseg>100</szelesseg><magassag>100</magassag></alakzat><alakzat><x>200</x><y>250</y><szelesseg>50</szelesseg><magassag>80</magassag></alakzat><alakzat><x>100</x><y>270</y><szelesseg>80</szelesseg><magassag>80</magassag></alakzat></alakzatok>";
-            var feldolgozo = new DOMParser();
-            var xmldok = feldolgozo.parseFromString(xml, "text/xml");
-            var i = 0;
-            for (elem in xmldok) {
+        function betolt() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    feldolgoz(this);
+                }
+            };
+            xhttp.open("GET", "adatok.xml", true);
+            xhttp.send();
+        }
+        function feldolgoz(xml) {
+            // var xml = "<alakzatok><alakzat> <x>100</x><y>150</y><szelesseg>100</szelesseg><magassag>100</magassag></alakzat><alakzat><x>200</x><y>250</y><szelesseg>50</szelesseg><magassag>80</magassag></alakzat><alakzat><x>100</x><y>270</y><szelesseg>80</szelesseg><magassag>80</magassag></alakzat></alakzatok>";
+            //var feldolgozo = new DOMParser();
+            //var xmldok = feldolgozo.parseFromString(xml, "text/xml");
+            var xmldok = xml.responseXML;
+            var alakzatokTombje = xmldok.getElementsByTagName("alakzat");
+            console.log(alakzatokTombje.length);
+            for (i = 0; i < alakzatokTombje.length; i++) {
                 var aktAlakzat = xmldok.getElementsByTagName("alakzat")[i];
-                i++;
                 var x = aktAlakzat.getElementsByTagName("x")[0].childNodes[0].nodeValue;
                 var y = aktAlakzat.getElementsByTagName("y")[0].childNodes[0].nodeValue;
                 var szelesseg = aktAlakzat.getElementsByTagName("szelesseg")[0].childNodes[0].nodeValue;
@@ -24,7 +35,7 @@
     </script>
 </head>
 
-<body onload="feldolgoz()">
+<body onload="betolt()">
     <canvas width="400" height="400" id="vaszon">
         ez a böngésző elavult
     </canvas>

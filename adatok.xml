@@ -1,7 +1,7 @@
 <alakzatok>
 <alakzat>
-    <x>100</x>
-    <y>150</y>
+    <x>0</x>
+    <y>0</y>
     <szelesseg>100</szelesseg>
     <magassag>100</magassag>
 </alakzat>
@@ -10,5 +10,11 @@
     <y>250</y>
     <szelesseg>50</szelesseg>
     <magassag>80</magassag>
+</alakzat>
+<alakzat>
+    <x>110</x>
+    <y>110</y>
+    <szelesseg>90</szelesseg>
+    <magassag>120</magassag>
 </alakzat>
 </alakzatok>
